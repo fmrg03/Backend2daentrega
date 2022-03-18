@@ -1,0 +1,29 @@
+[
+  {
+    "nombre": "Arroz",
+    "descripcion": "Arroz Blanco",
+    "precio": 300,
+    "imagen": "xxxx",
+    "stock": 10,
+    "timestamp": "17/3/2022 - 21:1:22",
+    "id": 1
+  },
+  {
+    "nombre": "Arroz",
+    "descripcion": "Arroz Blanco",
+    "precio": 300,
+    "imagen": "xxxx",
+    "stock": 10,
+    "timestamp": "17/3/2022 - 21:2:50",
+    "id": 3
+  },
+  {
+    "nombre": "Pasta",
+    "descripcion": "Pasta A granel",
+    "precio": 400,
+    "imagen": "xrwqxxx",
+    "stock": 30,
+    "timestamp": "17/3/2022 - 21:3:58",
+    "id": "4"
+  }
+]
