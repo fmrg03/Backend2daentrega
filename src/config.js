@@ -1,8 +1,14 @@
+require('dotenv').config()
+
 const config = {
     PORT: process.env.PORT || 8080,
-    mongoRemote: {
+    mongoDb: {
         client: 'mongodb',
-        cnxStr: 'mongodb+srv://froilanramos:fjmca.03@coderapi.9pvj0.mongodb.net/CoderAPI?retryWrites=true&w=majority'
+        cnxStr: process.env.MONGODB_CONN,
+        db: 'CoderAPI',
+        collectionProductos: 'productos',
+        collectionCarritos: 'carritos'
+
     },
     fileSystem: {
         path: './src/outputs/'

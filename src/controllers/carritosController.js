@@ -1,15 +1,19 @@
-const carritos = process.env.DB === 'mongo' ? require('../daos/carritos/CarritosDaosMongoDb') :
-    require('../daos/carritos/CarritosDaosArchivo')
+require('dotenv').config()
+const carritos = process.env.DB === 'mongodb' ? require('../daos/carritos/CarritosDaosMongoDb') :
+    require('../daos/productos/ProductosDaosArchivo')
 
-const productos = process.env.DB === 'mongo' ? require('../daos/productos/ProductosDaosMongoDb') :
+const productos = process.env.DB === 'mongodb' ? require('../daos/productos/ProductosDaosMongoDb') :
     require('../daos/productos/ProductosDaosArchivo')
 
 const carritoCrearPost = async (req, res) => {
-    res.send(await carritos.guardar({ productos: [] }))
+    const carrito = await carritos.guardar({ productos: [] })
+
+    res.send(typeof (carrito.productos))
 }
 
 const carritoProductosGet = async (req, res) => {
     const carrito = await carritos.listar(req.params.id)
+    res.send(carrito.productos[0])
     if (carrito == undefined) {
         res.send({ error: `El carrito con id ${req.params.id}, no existe` })
     } else {
@@ -38,7 +42,7 @@ const carritoProductosPost = async (req, res) => {
         if (producto == undefined) {
             res.send({ error: `El producto con id ${req.body.id}, no existe` })
         } else {
-            carrito.productos.push(producto)
+            carrito.productos.push(producto[0])
             await carritos.actualizar(carrito, req.params.id)
             res.send(carrito)
         }
@@ -54,17 +58,17 @@ const carritoProductosDelete = async (req, res) => {
         if (index != -1) {
             carrito.productos.splice(index, 1)
             await carritos.actualizar(carrito, req.params.id)
-            res.send({borrado: `El producto con id ${req.params.id_prod} fue borrado del carrito con id ${req.params.id}`})
+            res.send({ borrado: `El producto con id ${req.params.id_prod} fue borrado del carrito con id ${req.params.id}` })
         } else {
             res.send({ error: `El producto con id ${req.params.id_prod}, no existe en el carrito con id ${req.params.id}` })
         }
     }
 }
 
-    module.exports = {
-        carritoCrearPost,
-        carritoProductosGet,
-        carritoDelete,
-        carritoProductosPost,
-        carritoProductosDelete
-    }
+module.exports = {
+    carritoCrearPost,
+    carritoProductosGet,
+    carritoDelete,
+    carritoProductosPost,
+    carritoProductosDelete
+}

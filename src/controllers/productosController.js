@@ -1,4 +1,5 @@
-const productos = process.env.DB === 'mongo' ? require('../daos/productos/ProductosDaosMongoDb') :
+require('dotenv').config()
+const productos = process.env.DB === 'mongodb' ? require('../daos/productos/ProductosDaosMongoDb') :
     require('../daos/productos/ProductosDaosArchivo')
 
 const administrador = true
@@ -7,7 +8,7 @@ const productosGet = async (req, res) => {
     const productosLista = await productos.listar(req.params.id)
     if (!productosLista) {
         res.send({ error: `No hay productos con el id: ${req.params.id}` })
-    } else if (productosLista.length == 0) {
+    } else if (productosLista.length == 0 || productosLista == undefined) {
         res.send({ error: 'No hay productos' })
     } else {
         res.send(productosLista)
@@ -31,7 +32,8 @@ const productosPost = async (req, res) => {
 const productosPut = async (req, res) => {
     if (administrador) {
         const existe = await productos.listar(req.params.id)
-        if (Object.keys(existe).length == 7) {
+        console.log(existe)
+        if (Object.keys(existe).length == 7 || existe.length == 1) {
             if (Object.keys(req.body).length != 0) {
                 const productoActualizado = await productos.actualizar(req.body, req.params.id)
                 res.send(productoActualizado)
