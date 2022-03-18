@@ -8,12 +8,6 @@
 
 El proyecto se trata, por los momentos de una API ecommerce, donde el usuario podrá realizar peticiones a la API para obtener información de productos, agregar nuevos productos, modificarlos o eliminarlos. Así mismo, podrá crear un carrito, visualizar los productos que contiene el carrito, agregar productos al carrito, eliminar los productos del carrito o eliminar el carrito completo.
 
-La API se encuentra cargada en Glitch, y se puede acceder de la siguiente forma:
-
-- La ruta base de la API para la seccion de **productos** es: https://near-interesting-tabletop.glitch.me/api/productos
-
-- La ruta base de la API para la seccion de **carrito** es: https://near-interesting-tabletop.glitch.me/api/carrito
-
 Así mismo, se puede instalar el proyecto en un servidor de desarrollo local, para ello se debe descargar los archivos del repositorio, luego desde la terminal ingresar a la carpeta que contiene los archivos y ejecutar el siguiente comando: ***npm install*** para instalar todas las dependencias y pueda funcionar correctamente.
 
 Luego de que se instalen las dependencias, se debe ejecutar el siguiente comando en la terminal: ***npm start*** para iniciar el servidor.
