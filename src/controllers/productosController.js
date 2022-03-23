@@ -6,9 +6,8 @@ const administrador = true
 
 const productosGet = async (req, res) => {
     const productosLista = await productos.listar(req.params.id)
-    if (!productosLista) {
-        res.send({ error: `No hay productos con el id: ${req.params.id}` })
-    } else if (productosLista.length == 0 || productosLista == undefined) {
+    console.log(productosLista)
+    if (productosLista == undefined || productosLista.length == 0) {
         res.send({ error: 'No hay productos' })
     } else {
         res.send(productosLista)
@@ -32,7 +31,6 @@ const productosPost = async (req, res) => {
 const productosPut = async (req, res) => {
     if (administrador) {
         const existe = await productos.listar(req.params.id)
-        console.log(existe)
         if (Object.keys(existe).length == 7 || existe.length == 1) {
             if (Object.keys(req.body).length != 0) {
                 const productoActualizado = await productos.actualizar(req.body, req.params.id)

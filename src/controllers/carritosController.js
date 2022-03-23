@@ -1,26 +1,27 @@
 require('dotenv').config()
 const carritos = process.env.DB === 'mongodb' ? require('../daos/carritos/CarritosDaosMongoDb') :
-    require('../daos/productos/ProductosDaosArchivo')
+    require('../daos/carritos/CarritosDaosArchivo')
 
 const productos = process.env.DB === 'mongodb' ? require('../daos/productos/ProductosDaosMongoDb') :
     require('../daos/productos/ProductosDaosArchivo')
 
 const carritoCrearPost = async (req, res) => {
-    const carrito = await carritos.guardar({ productos: [] })
-
-    res.send(typeof (carrito.productos))
+    const carrito = await carritos.guardar({ productosCarrito: [] })
+    res.send(carrito)
 }
 
 const carritoProductosGet = async (req, res) => {
-    const carrito = await carritos.listar(req.params.id)
-    res.send(carrito.productos[0])
-    if (carrito == undefined) {
+    let carrito = await carritos.listar(req.params.id)
+    if (process.env.DB === 'mongodb') {
+        carrito = carrito[0]
+    }
+    if (carrito == undefined || carrito.length == 0) {
         res.send({ error: `El carrito con id ${req.params.id}, no existe` })
     } else {
-        if ((carrito.productos.length != 0) || (carrito.productos.length == undefined)) {
-            res.send(carrito.productos)
-        } else {
+        if (carrito.productosCarrito == undefined || carrito.productosCarrito.length == 0) {
             res.send({ error: `No hay productos en el carrito con id: ${req.params.id}` })
+        } else {
+            res.send(carrito.productosCarrito)
         }
     }
 }
@@ -34,15 +35,21 @@ const carritoDelete = async (req, res) => {
 }
 
 const carritoProductosPost = async (req, res) => {
-    const carrito = await carritos.listar(req.params.id)
-    if (carrito == undefined) {
+    let carrito = await carritos.listar(req.params.id)
+    if (process.env.DB === 'mongodb') {
+        carrito = carrito[0]
+    }
+    if (carrito == undefined || carrito.length == 0) {
         res.send({ error: `El carrito con id ${req.params.id}, no existe` })
     } else {
-        const producto = await productos.listar(req.body.id)
-        if (producto == undefined) {
+        let producto = await productos.listar(req.body.id)
+        if (process.env.DB === 'mongodb') {
+            producto = producto[0]
+        }
+        if (producto == undefined || producto.length == 0) {
             res.send({ error: `El producto con id ${req.body.id}, no existe` })
         } else {
-            carrito.productos.push(producto[0])
+            carrito.productosCarrito.push(producto)
             await carritos.actualizar(carrito, req.params.id)
             res.send(carrito)
         }
@@ -50,13 +57,16 @@ const carritoProductosPost = async (req, res) => {
 }
 
 const carritoProductosDelete = async (req, res) => {
-    const carrito = await carritos.listar(req.params.id)
-    if (carrito == undefined) {
+    let carrito = await carritos.listar(req.params.id)
+    if (process.env.DB === 'mongodb') {
+        carrito = carrito[0]
+    }
+    if (carrito == undefined || carrito.length == 0) {
         res.send({ error: `El carrito con id ${req.params.id}, no existe` })
     } else {
-        const index = carrito.productos.findIndex(producto => producto.id == req.params.id_prod)
+        const index = carrito.productosCarrito.findIndex(producto => producto.id == req.params.id_prod)
         if (index != -1) {
-            carrito.productos.splice(index, 1)
+            carrito.productosCarrito.splice(index, 1)
             await carritos.actualizar(carrito, req.params.id)
             res.send({ borrado: `El producto con id ${req.params.id_prod} fue borrado del carrito con id ${req.params.id}` })
         } else {

@@ -1,29 +1,47 @@
 [
   {
-    "nombre": "Arroz",
-    "descripcion": "Arroz Blanco",
-    "precio": 300,
+    "nombre": "ney",
+    "precio": 30,
+    "stock": 3,
     "imagen": "xxxx",
-    "stock": 10,
-    "timestamp": "17/3/2022 - 21:1:22",
-    "id": 1
-  },
-  {
-    "nombre": "Arroz",
-    "descripcion": "Arroz Blanco",
-    "precio": 300,
-    "imagen": "xxxx",
-    "stock": 10,
-    "timestamp": "17/3/2022 - 21:2:50",
+    "descripcion": "pasta dura Blanco",
+    "timestamp": "22/3/2022 - 23:23:3",
     "id": 3
   },
   {
-    "nombre": "Pasta",
-    "descripcion": "Pasta A granel",
-    "precio": 400,
-    "imagen": "xrwqxxx",
-    "stock": 30,
-    "timestamp": "17/3/2022 - 21:3:58",
-    "id": "4"
+    "nombre": "ney",
+    "precio": 30,
+    "stock": 3,
+    "imagen": "xxxx",
+    "descripcion": "pasta dura Blanco",
+    "timestamp": "22/3/2022 - 23:23:4",
+    "id": 4
+  },
+  {
+    "nombre": "ney",
+    "precio": 30,
+    "stock": 3,
+    "imagen": "xxxx",
+    "descripcion": "pasta dura Blanco",
+    "timestamp": "22/3/2022 - 23:27:53",
+    "id": 6
+  },
+  {
+    "nombre": "ney",
+    "precio": 30,
+    "stock": 3,
+    "imagen": "xxxx",
+    "descripcion": "pasta dura Blanco",
+    "timestamp": "22/3/2022 - 23:27:55",
+    "id": 7
+  },
+  {
+    "nombre": "ney",
+    "precio": 30,
+    "stock": 3,
+    "imagen": "xxxx",
+    "descripcion": "pasta dura Blanco",
+    "timestamp": "22/3/2022 - 23:27:55",
+    "id": 8
   }
 ]

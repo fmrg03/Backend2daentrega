@@ -14,16 +14,16 @@ class ContenedorArchivo {
     }
 
     async listar(id) {
-            let data = await fs.readFile(this.ruta, 'utf-8')
-            if (data == "") { 
-                data = []
-            } else {
-                data = JSON.parse(data)
-            }
-            if (id != undefined) {
-                const dataBuscada = data.find(obj => obj.id == id)
-                return dataBuscada
-            } else { return data }
+        let data = await fs.readFile(this.ruta, { encoding: 'utf-8', flag: 'as+' })
+        if (data == "") {
+            data = []
+        } else {
+            data = JSON.parse(data)
+        }
+        if (id != undefined) {
+            const dataBuscada = data.find(obj => obj.id == id)
+            return dataBuscada
+        } else { return data }
     }
 
     async guardar(obj) {
@@ -55,6 +55,7 @@ class ContenedorArchivo {
         if (!dataActualizar) {
             throw new Error(`Error al actualizar: no se encontró el id ${id}`)
         } else {
+            id = parseInt(id)
             dataActualizar = { ...dataActualizar, ...elem, id, timestamp: this.date() }
             dataCompleta.push(dataActualizar)
             try {

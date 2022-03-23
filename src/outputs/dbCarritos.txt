@@ -1,77 +1,27 @@
 [
   {
-    "productos": [],
-    "timestamp": "17/3/2022 - 21:4:38",
-    "id": 3
+    "productosCarrito": [],
+    "timestamp": "22/3/2022 - 23:30:3",
+    "id": 1
   },
   {
-    "productos": [
+    "productosCarrito": [],
+    "timestamp": "22/3/2022 - 23:30:5",
+    "id": 4
+  },
+  {
+    "productosCarrito": [
       {
-        "nombre": "Arroz",
-        "descripcion": "Arroz Blanco",
-        "precio": 300,
+        "nombre": "ney",
+        "precio": 30,
+        "stock": 3,
         "imagen": "xxxx",
-        "stock": 10,
-        "timestamp": "17/3/2022 - 21:1:22",
-        "id": 1
+        "descripcion": "pasta dura Blanco",
+        "timestamp": "22/3/2022 - 23:23:3",
+        "id": 3
       }
     ],
-    "timestamp": "17/3/2022 - 21:9:39",
-    "id": "2"
-  },
-  {
-    "productos": [],
-    "timestamp": "18/3/2022 - 2:42:22",
-    "id": "21"
-  },
-  {
-    "productos": [],
-    "timestamp": "18/3/2022 - 2:42:25",
-    "id": "211"
-  },
-  {
-    "productos": [],
-    "timestamp": "18/3/2022 - 2:42:27",
-    "id": "2111"
-  },
-  {
-    "productos": [],
-    "timestamp": "18/3/2022 - 2:43:53",
-    "id": "21111"
-  },
-  {
-    "productos": [],
-    "timestamp": "18/3/2022 - 2:43:53",
-    "id": "211111"
-  },
-  {
-    "productos": [],
-    "timestamp": "18/3/2022 - 2:43:54",
-    "id": "2111111"
-  },
-  {
-    "productos": [],
-    "timestamp": "18/3/2022 - 2:43:55",
-    "id": "21111111"
-  },
-  {
-    "productos": [],
-    "timestamp": "18/3/2022 - 2:53:6",
-    "id": "211111111"
-  },
-  {
-    "productos": [],
-    "timestamp": "18/3/2022 - 2:53:9",
-    "id": "2111111111"
-  },
-  {
-    "productos": [],
-    "timestamp": "18/3/2022 - 2:53:11",
-    "id": "21111111111"
-  },
-  {
-    "productos": [],
-    "timestamp": "18/3/2022 - 2:53:12",
-    "id": "211111111111"
+    "timestamp": "23/3/2022 - 0:29:31",
+    "id": 3
   }
 ]
