@@ -97,7 +97,6 @@ class ContenedorMongoDb {
             throw new Error(`Error al borrar todos: ${error}`)
         }
     }
-
 }
 
 module.exports = ContenedorMongoDb

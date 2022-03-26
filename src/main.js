@@ -2,12 +2,6 @@ const express = require('express')
 const carritoApi = require('./routers/carrito')
 const productosApi = require('./routers/productos')
 const config = require('./config')
-
-
-let idProducto = 1
-let idCarrito = 9500
-let administrador = true
-
 const app = express()
 
 app.use(express.json())

@@ -1,12 +1,12 @@
 require('dotenv').config()
 const productos = process.env.DB === 'mongodb' ? require('../daos/productos/ProductosDaosMongoDb') :
-    require('../daos/productos/ProductosDaosArchivo')
+    process.env.DB === 'firebase' ? require('../daos/productos/ProductosDaosFirebase') :
+        require('../daos/productos/ProductosDaosArchivo')
 
 const administrador = true
 
 const productosGet = async (req, res) => {
     const productosLista = await productos.listar(req.params.id)
-    console.log(productosLista)
     if (productosLista == undefined || productosLista.length == 0) {
         res.send({ error: 'No hay productos' })
     } else {
@@ -17,12 +17,8 @@ const productosGet = async (req, res) => {
 const productosPost = async (req, res) => {
     if (administrador) {
         let producto = req.body
-        if (producto.nombre == undefined || producto.precio == undefined || producto.descripcion == undefined || producto.imagen == undefined || producto.stock == undefined) {
-            res.send({ error: 'Todos los campos para agregar un producto son requeridos' })
-        } else {
-            producto = await productos.guardar(req.body)
-            res.json(producto)
-        }
+        producto = await productos.guardar(req.body)
+        res.json(producto)
     } else {
         res.send({ error: -1, descripcion: `Ruta '${req.url}', método '${req.method}' no autorizada` })
     }

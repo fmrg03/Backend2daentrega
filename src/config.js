@@ -6,9 +6,12 @@ const config = {
         client: 'mongodb',
         cnxStr: process.env.MONGODB_CONN,
         db: 'CoderAPI',
+
+    },
+    firebase: {
+        client: 'fibrebase',
         collectionProductos: 'productos',
         collectionCarritos: 'carritos'
-
     },
     fileSystem: {
         path: './src/outputs/'

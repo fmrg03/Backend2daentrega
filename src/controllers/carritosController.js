@@ -1,9 +1,11 @@
 require('dotenv').config()
 const carritos = process.env.DB === 'mongodb' ? require('../daos/carritos/CarritosDaosMongoDb') :
-    require('../daos/carritos/CarritosDaosArchivo')
+    process.env.DB === 'firebase' ? require('../daos/carritos/CarritoDaosFirebase') :
+        require('../daos/carritos/CarritosDaosArchivo')
 
 const productos = process.env.DB === 'mongodb' ? require('../daos/productos/ProductosDaosMongoDb') :
-    require('../daos/productos/ProductosDaosArchivo')
+    process.env.DB === 'firebase' ? require('../daos/productos/ProductosDaosFirebase') :
+        require('../daos/productos/ProductosDaosArchivo')
 
 const carritoCrearPost = async (req, res) => {
     const carrito = await carritos.guardar({ productosCarrito: [] })
@@ -46,6 +48,7 @@ const carritoProductosPost = async (req, res) => {
         if (process.env.DB === 'mongodb') {
             producto = producto[0]
         }
+        console.log(producto)
         if (producto == undefined || producto.length == 0) {
             res.send({ error: `El producto con id ${req.body.id}, no existe` })
         } else {
